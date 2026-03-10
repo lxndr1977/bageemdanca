@@ -1,0 +1,112 @@
+<?php
+
+namespace App\Models;
+
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRoleEnum;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+
+class User extends Authenticatable implements FilamentUser
+{
+    /** @use HasFactory<\Database\Factories\UserFactory> */
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role',
+    ];
+
+    protected static function booted(): void
+    {
+        static::deleting(function (User $user) {
+            if ($user->schools()->whereHas('registration')->exists()) {
+                throw new \Exception('Não é possível excluir: este usuário possui inscrições vinculadas através de suas escolas.');
+            }
+        });
+    }
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var list<string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+            'role' => UserRoleEnum::class,
+        ];
+    }
+
+    /**
+     * Get the user's initials
+     */
+    public function initials(): string
+    {
+        return Str::of($this->name)
+            ->explode(' ')
+            ->take(2)
+            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->implode('');
+    }
+
+    public function schools(): HasMany
+    {
+        return $this->hasMany(School::class);
+    }
+
+    public function school(): HasOne
+    {
+        return $this->hasOne(School::class);
+    }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->role === UserRoleEnum::SuperAdmin;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRoleEnum::Admin;
+    }
+
+    public function isUser(): bool
+    {
+        return $this->role === UserRoleEnum::User;
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        //   return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        return in_array($this->role, [
+            UserRoleEnum::Admin,
+            UserRoleEnum::SuperAdmin,
+        ]);
+    }
+}
