@@ -131,6 +131,7 @@ trait WithFinalStep
                     'city' => $this->school->city,
                     'state' => $this->school->state,
                 ],
+                'is_social_project' => $this->school->is_social_project,
             ],
             'members' => $this->members->map(function ($member) {
                 return [

@@ -85,6 +85,7 @@
                     <dl class="space-y-3">
                         @foreach ([
                             'Nome'              => $record->school->name,
+                            'Projeto'           => $record->school->is_social_project ? 'Sim' : 'Não',
                             'Responsável'       => $record->school->responsible_name,
                             'E-mail'            => $record->school->responsible_email,
                             'Telefone/WhatsApp' => $record->school->responsible_phone,
@@ -204,8 +205,6 @@
                                 'Música'                => $choreography->music,
                                 'Compositor'            => $choreography->music_composer,
                                 'Duração'               => $choreography->duration,
-                                'Projeto Social'        => $choreography->is_social_project ? 'Sim' : 'Não',
-                                'Projeto Universitário' => $choreography->is_university_project ? 'Sim' : 'Não',
                             ] as $label => $value)
                                 <div class="flex items-start justify-between gap-4 border-b border-gray-100 pb-2 dark:border-white/5 last:border-0">
                                     <dt class="shrink-0 text-sm text-gray-500 dark:text-gray-400">{{ $label }}</dt>

@@ -135,6 +135,7 @@
       subtitle="Informações de contato do Grupo/Escola/Cia"
       class="border border-zinc-100 rounded-lg shadow">
       <p><strong>Nome:</strong> {{ $school->name }}</p>
+      <p><strong>Projeto?</strong> {{ $school->is_social_project ? 'Sim' : 'Não' }}</p>
       <p><strong>Endereço:</strong>
          {{ $school->street }},
          {{ $school->number }}
@@ -210,8 +211,8 @@
             <x-slot:content>
                <div class="mt-2 space-y-8">
                   <div class="space-y-1 mb-6">
-                     <p><strong>Projeto Social:</strong> {{ $choreography->is_social_project ? 'Sim' : 'Não'}}</p>
-                     <p><strong>Projeto Universitário:</strong> {{ $choreography->is_university_project ? 'Sim' : 'Não'}}</p>
+                     <!-- <p><strong>Projeto Social:</strong> {{ $choreography->is_social_project ? 'Sim' : 'Não'}}</p>
+                     <p><strong>Projeto Universitário:</strong> {{ $choreography->is_university_project ? 'Sim' : 'Não'}}</p> -->
                      <p><strong>Música:</strong> {{ $choreography->music }}</p>
                      <p><strong>Compositor:</strong> {{ $choreography->music_composer }}</p>
                      <p><strong>Duração:</strong> {{ $choreography->duration }}</p>

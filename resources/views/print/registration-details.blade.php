@@ -321,6 +321,10 @@
                      <div class="field-value">{{ $record->school->name }}</div>
                   </div>
                   <div class="field-group">
+                     <label class="field-label">Projeto</label>
+                     <div class="field-value">{{ $record->school->is_social_project ? 'Sim' : 'Não' }}</div>
+                  </div>
+                  <div class="field-group">
                      <label class="field-label">Responsável</label>
                      <div class="field-value">{{ $record->school->responsible_name }}</div>
                   </div>
@@ -385,14 +389,14 @@
                      <div class="field-value">
                         {{ $choreography->choreographers->count() + $choreography->dancers->count() }} pessoas</div>
                   </div>
-                  <div class="field-group">
+                  <!-- <div class="field-group">
                      <label class="field-label">Projeto Social</label>
                      <div class="field-value">{{ $choreography->is_social_project ? 'Sim' : 'Não' }}</div>
                   </div>
                   <div class="field-group">
                      <label class="field-label">Projeto Universitário</label>
                      <div class="field-value">{{ $choreography->is_university_project ? 'Sim' : 'Não' }}</div>
-                  </div>
+                  </div> -->
                </div>
             </div>
          </div>

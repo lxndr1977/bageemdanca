@@ -27,6 +27,7 @@ trait WithSchoolStep
         'responsible_name' => '',
         'responsible_email' => '',
         'responsible_phone' => '',
+        'is_social_project'
     ];
 
     /**

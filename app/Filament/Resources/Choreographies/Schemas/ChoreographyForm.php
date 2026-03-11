@@ -78,15 +78,15 @@ final class ChoreographyForm
                                 ->maxLength(5),
                         ]),
 
-                        Grid::make(3)->schema([
-                            Toggle::make('is_social_project')
-                                ->label('Projeto Social')
-                                ->inline(false),
+                        // Grid::make(3)->schema([
+                        //     Toggle::make('is_social_project')
+                        //         ->label('Projeto Social')
+                        //         ->inline(false),
 
-                            Toggle::make('is_university_project')
-                                ->label('Projeto Universitário')
-                                ->inline(false),
-                        ]),
+                        //     Toggle::make('is_university_project')
+                        //         ->label('Projeto Universitário')
+                        //         ->inline(false),
+                        // ]),
                     ]),
 
                 Section::make('Participantes')

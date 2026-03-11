@@ -22,6 +22,7 @@ use Filament\Actions\EditAction;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
@@ -67,6 +68,10 @@ class RegistrationResource extends Resource
                     TextInput::make('name')
                         ->label('Nome do Grupo/Escola/Cia')
                         ->required()
+                        ->columnSpanFull(),
+
+                    Toggle::make('is_social_project')
+                        ->label('Projeto Social?')
                         ->columnSpanFull(),
 
                     Select::make('user_id')
@@ -120,6 +125,8 @@ class RegistrationResource extends Resource
                         ->label('Telefone do Responsável')
                         ->tel()
                         ->columnSpan(1),
+
+
                 ])->columnSpanFull(),
             ])->columnSpanFull();
     }
@@ -170,7 +177,7 @@ class RegistrationResource extends Resource
                 Action::make('view_details')
                     ->label('Ver Detalhes')
                     ->icon('heroicon-o-eye')
-                    ->url(fn (Registration $record): string => RegistrationResource::getUrl('view', ['record' => $record]))
+                    ->url(fn(Registration $record): string => RegistrationResource::getUrl('view', ['record' => $record]))
                     ->openUrlInNewTab(false),
             ])
             ->bulkActions([

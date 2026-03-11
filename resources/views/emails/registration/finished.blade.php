@@ -243,6 +243,7 @@
             <div class="section-block">
                 <div class="section-title">Dados da Escola</div>
                 <p><strong>Nome:</strong> {{ $registration->school->name }}</p>
+                <p><strong>Projeto:</strong> {{ $registration->school->is_social_project ? 'Sim' : 'Não' }}</p>
                 <p><strong>Responsável:</strong> {{ $registration->school->responsible_name }}</p>
                 <p><strong>E-mail do responsável:</strong> {{ $registration->school->responsible_email }}</p>
                 <p><strong>WhatsApp:</strong> {{ $registration->school->responsible_phone }}</p>

@@ -35,6 +35,16 @@
                   error-class="font-bold text-red-600" />
             </div>
          </div>
+         <div class="grid grid-cols-1 md:grid-cols-2 mb-3">
+            {{-- Projeto --}}
+            <div class="md:col-span-2">
+               <x-mary-toggle
+                  label="É um Projeto?"
+                  wire:model.defer="schoolState.is_social_project"
+                  id="is_social_project" />
+
+            </div>
+         </div>
 
          {{-- Endereço --}}
          <div class="grid grid-cols-1 md:grid-cols-4 mb-3">

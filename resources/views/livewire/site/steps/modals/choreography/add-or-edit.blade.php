@@ -11,12 +11,12 @@
 
       {{-- Projetos Sociais/Universitários --}}
       <div class="col-span-3 flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 md:space-x-8">
-         <div x-data @input="$wire.clearError('choreographyState.is_social_project')">
+         <div x-data @input="$wire.clearError('choreographyState.is_social_project')" class="hidden">
             <x-mary-toggle label="É um projeto social?" wire:model.defer="choreographyState.is_social_project"
                id="is_social_project" />
          </div>
 
-         <div x-data @input="$wire.clearError('choreographyState.is_university_project')">
+         <div x-data @input="$wire.clearError('choreographyState.is_university_project')" class="hidden">
             <x-mary-toggle label="É um projeto universitário?"
                wire:model.defer="choreographyState.is_university_project" id="is_university_project" />
          </div>

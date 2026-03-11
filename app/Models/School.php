@@ -26,6 +26,7 @@ class School extends Model
         'responsible_name',
         'responsible_email',
         'responsible_phone',
+        'is_social_project',
     ];
 
     public function user(): BelongsTo
