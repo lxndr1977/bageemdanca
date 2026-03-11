@@ -3,13 +3,14 @@
 namespace App\Mail;
 
 use App\Models\Registration;
+use App\Models\SystemConfiguration;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;  
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 
 class RegistrationFinished extends Mailable implements ShouldQueue
@@ -18,17 +19,11 @@ class RegistrationFinished extends Mailable implements ShouldQueue
 
     public Registration $registration;
 
-    /**
-     * Create a new message instance.
-     */
     public function __construct(Registration $registration)
     {
         $this->registration = $registration;
     }
 
-    /**
-     * Get the message envelope.
-     */
     public function envelope(): Envelope
     {
         return new Envelope(
@@ -37,26 +32,19 @@ class RegistrationFinished extends Mailable implements ShouldQueue
         );
     }
 
-    /**
-     * Get the message content definition.
-     */
     public function content(): Content
     {
         return new Content(
-            html: 'emails.registration.finished', // Caminho correto da view
+            html: 'emails.registration.finished',
             with: [
-                'registration' => $this->registration,
-                'school' => $this->registration->school,
-                'user' => $this->registration->school->user,
+                'registration'  => $this->registration,
+                'school'        => $this->registration->school,
+                'user'          => $this->registration->school->user,
+                'systemConfig'  => SystemConfiguration::first(),
             ],
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
     public function attachments(): array
     {
         return [];

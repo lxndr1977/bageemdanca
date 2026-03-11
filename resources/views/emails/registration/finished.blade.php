@@ -10,7 +10,7 @@
         $textColor = $systemConfig?->text_color ?? '#333333';
         $buttonColor = $systemConfig?->button_color ?? '#e91e63';
         $buttonTextColor = $systemConfig?->button_text_color ?? '#ffffff';
-        $whatsapp = $systemConfig?->whatsapp ?? null;
+        $whatsapp = $systemConfig?->notification_whatsapp ?? null;
         $whatsappLink = $whatsapp
             ? 'https://wa.me/' . preg_replace('/\D/', '', $whatsapp)
             : 'https://wa.me/';
@@ -310,7 +310,7 @@
             </div>
 
             <div class="cta-container">
-                <a href="https://inscricoes.bageemdanca.com.br/home" class="cta-button">
+                <a href="https://inscricoes.bageemdanca.com.br" class="cta-button">
                     Acessar Painel
                 </a>
             </div>
