@@ -33,7 +33,7 @@ class RegistrationFinished extends Mailable implements ShouldQueue
     {
         return new Envelope(
             subject: 'Confirmação de Inscrição - Bagé em Dança',
-            from: new Address('naoresponda@bageemdanca.com.br', 'Bagé em Dança'),
+            from: new Address('naoresponda@inscricoes.bageemdanca.com.br', 'Bagé em Dança'),
         );
     }
 
