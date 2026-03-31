@@ -14,6 +14,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Livewire\Form;
 
 class DancersRelationManager extends RelationManager
 {
@@ -29,8 +30,15 @@ class DancersRelationManager extends RelationManager
                     ->label('Nome')
                     ->required()
                     ->maxLength(255)
-                    ->columnSpanFull(),
-            ]);
+                    ->columnSpan(2),
+
+                Forms\Components\DatePicker::make('birth_date')
+                    ->label('Nascimento')
+                    ->format('d/m/Y')
+                    ->required()
+                    ->maxDate(now())
+                    ->columnSpan(1),
+            ])->columns(3);
     }
 
     public function table(Table $table): Table
